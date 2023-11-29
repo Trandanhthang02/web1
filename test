@@ -1,1 +1,60 @@
-H
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaflet Map Example</title>
+  <!-- Include Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Specify the height of the map container -->
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Create a div with an id for the map -->
+<div id="map"></div>
+
+<!-- Include Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // GeoJSON data for a polygon
+  var polygonData = {
+    "type": "Feature",
+    "properties": {
+      "ST": "ExamplePolygon"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [105.77336966438162, 21.07127279024978],
+          [105.77397764062516, 21.07127279024978],
+          [105.77397764062516, 21.070900483900076],
+          [105.77336966438162, 21.070900483900076],
+          [105.77336966438162, 21.07127279024978]
+        ]
+      ]
+    },
+    "id": 8
+  };
+
+  // Initialize the map
+  var mymap = L.map('map').setView([21.071, 105.773], 15); // Set initial coordinates and zoom level
+
+  // Add a tile layer to the map
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(mymap);
+
+  // Add a GeoJSON polygon to the map
+  L.geoJSON(polygonData).addTo(mymap);
+</script>
+
+</body>
+</html>
+
